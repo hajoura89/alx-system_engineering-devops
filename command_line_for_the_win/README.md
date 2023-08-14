@@ -1,4 +1,4 @@
-# TASKS
+
 ## Specific
 In addition to completing the project tasks and submitting the required screenshots to GitHub, you are also required to demonstrate the use of the SFTP (Secure File Transfer Protocol) command-line tool to move your local screenshots to the sandbox environment.
 
@@ -15,6 +15,7 @@ In addition to completing the project tasks and submitting the required screensh
 ## NOTE :
 - The screenshoots of completed level should be inside the dir /root/alx-system_engineering-devops/command_line_for_the_win/
 
+# TASKS
 ## 0. First 九 tasks
 Complete the first 9 tasks.
 
