@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Displays "Best School" 10 times
+# For the 9th iteration, displays Best School and then Hi on a new line
+
+limit=0
+
+while [ $limit -lt 10 ]
+do
+  if [ $limit -eq 9 ]
+  then
+    echo "Hi"
+  fi
+  echo "Best School"
+  (( limit++ ))
+done

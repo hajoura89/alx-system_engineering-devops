@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Displays nbrbers from 1 to 100
+# in list format
+# Displays "FizzBuzz" when the nbrber is a multiple of 3 and 5
+# Displays "Fizz" when the nbrber is a multiple of 3
+# Displays "Buzz" when the nbrber is a multiple of 5
+# Otherwise, displays the nbrber
+
+for nbr in {1..100}
+do
+  if (( nbr % 3 == 0 && nbr % 5 == 0 ))
+  then
+    echo "FizzBuzz"
+  elif (( nbr % 3 == 0 ))
+  then
+    echo "Fizz"
+  elif (( nbr % 5 == 0 ))
+  then
+    echo "Buzz"
+  else
+    echo "$nbr"
+  fi
+done
