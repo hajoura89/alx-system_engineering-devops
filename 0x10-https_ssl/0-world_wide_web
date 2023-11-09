@@ -9,9 +9,9 @@ info_domain () {
 if [ "$#" == 1 ]
 then
   info_domain "$1" "www"
-  info_domain "$1" "411997-lb-01"
-  info_domain "$1" "411997-web-01"
-  info_domain "$1" "411997-web-02"
+  info_domain "$1" "lb-01"
+  info_domain "$1" "web-01"
+  info_domain "$1" "web-02"
 elif [ "$#" == 2 ]
 then
   info_domain "$1" "$2"
