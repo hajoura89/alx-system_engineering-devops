@@ -1,53 +1,37 @@
 #!/usr/bin/python3
-""" a Python script that, using a REST API, for a given employee ID,
-    returns information about his/her TODO list progress."""
+"""
+A Script that, uses this REST API, for a given employee ID, returns
+information about his/her TODO list progress
+"""
+
+import json
 import requests
-import sys
+from sys import argv
 
 
-if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
-    r = requests.get(url)
-    name = r.json().get("name")
-    url2 = 'https://jsonplaceholder.typicode.com/todos'
-    r2 = requests.get(url2)
-    task_names = []
-    tasks = 0
-    completed = 0
-    for item in r2.json():
-        if item.get("userId") == int(sys.argv[1]):
-            tasks += 1
-            if item.get("completed") is True:
-                completed += 1
-                task_names.append(item.get("title"))
-    print("Employee {} is done with tasks({}/{}):".format(name,
-                                                          completed,
-                                                          tasks))
-    for i in task_names:
-        print("\t {}".format(i))#!/usr/bin/python3
-""" a Python script that, using a REST API, for a given employee ID,
-    returns information about his/her TODO list progress."""
-import requests
-import sys
+if __name__ == "__main__":
 
+    sessionReq = requests.Session()
 
-if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
-    r = requests.get(url)
-    name = r.json().get("name")
-    url2 = 'https://jsonplaceholder.typicode.com/todos'
-    r2 = requests.get(url2)
-    task_names = []
-    tasks = 0
-    completed = 0
-    for item in r2.json():
-        if item.get("userId") == int(sys.argv[1]):
-            tasks += 1
-            if item.get("completed") is True:
-                completed += 1
-                task_names.append(item.get("title"))
-    print("Employee {} is done with tasks({}/{}):".format(name,
-                                                          completed,
-                                                          tasks))
-    for i in task_names:
-        print("\t {}".format(i))
+    idEmp = argv[1]
+    idURL = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(idEmp)
+    nameURL = 'https://jsonplaceholder.typicode.com/users/{}'.format(idEmp)
+
+    employee = sessionReq.get(idURL)
+    employeeName = sessionReq.get(nameURL)
+
+    json_req = employee.json()
+    name = employeeName.json()['name']
+
+    totalTasks = 0
+
+    for done_tasks in json_req:
+        if done_tasks['completed']:
+            totalTasks += 1
+
+    print("Employee {} is done with tasks({}/{}):".
+          format(name, totalTasks, len(json_req)))
+
+    for done_tasks in json_req:
+        if done_tasks['completed']:
+            print("\t " + done_tasks.get('title'))
