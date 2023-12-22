@@ -1,0 +1,15 @@
+
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+frontend scorpionhka-tech-frontend
+    bind *:80
+    default_backend clickviral-tech-backend
+backend scorpionhka-tech-backend
+   balance roundrobin
+   server 411997-web-01 100.25.141.63:80 check
+   server 411997-web-02 100.25.220.253:80 check
+
